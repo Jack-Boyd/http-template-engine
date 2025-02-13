@@ -1,4 +1,4 @@
-#include "template.h"
+#include "template_utils.h"
 
 char* replace_placeholders(char* result, const char** keys, const char** values, int num_pairs) {
   for (int i = 0; i < num_pairs; i++) {
@@ -117,7 +117,13 @@ char* process_loops(char* result, const char* loop_key, const char** loop_values
     for (int i = 0; i < loop_count; i++) {
       char item_placeholder[64];
       snprintf(item_placeholder, sizeof(item_placeholder), "{{%s}}", loop_key);
-      char* loop_result = replace_placeholders(loop_content, (const char**)&loop_key, (const char**)&loop_values[i], 1);
+
+      char* loop_content_copy = strdup(loop_content);
+      if (!loop_content_copy) {
+        perror("Failed to duplicate loop content");
+        continue;
+      }
+      char* loop_result = replace_placeholders(loop_content_copy, (const char**)&loop_key, (const char**)&loop_values[i], 1);
       if (loop_result) {
         strcpy(new_result + len_before, loop_result);
         len_before += strlen(loop_result);
@@ -134,8 +140,8 @@ char* process_loops(char* result, const char* loop_key, const char** loop_values
   return result;
 }
 
-char* process_template(const char* template, const char** keys, const char** values, int num_pairs, const char* loop_key, const char** loop_values, int loop_count) {
-  char* result = strdup(template);
+char* process_template(const char* template_str, const char** keys, const char** values, int num_pairs, const char* loop_key, const char** loop_values, int loop_count) {
+  char* result = strdup(template_str);
   if (!result) {
     perror("Failed to allocate memory for template processing");
     return NULL;

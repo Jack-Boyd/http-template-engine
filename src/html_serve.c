@@ -2,18 +2,16 @@
 
 char* serve_html(const char* filename) {
   FILE* file = fopen(filename, "r");
-  printf("1\n");
   if (!file) {
     perror("Error opening file");
     return NULL;
   }
-  printf("2\n");
+  
   if (fseek(file, 0, SEEK_END) != 0) {
     perror("Error seeking to end of file");
     fclose(file);
     return NULL;
   }
-  printf("3");
   long length = ftell(file);
   if (length == -1) {
     perror("Error getting file size");
@@ -36,7 +34,6 @@ char* serve_html(const char* filename) {
 
   if (fread(buffer, 1, length, file) != length) {
     perror("Error reading file");
-    printf("problem");
     fclose(file);
     return NULL;
   }

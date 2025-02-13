@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/Users/jackboyd/Development/C/html-template-engine/include
 
-C_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk
+C_FLAGS = -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk
 

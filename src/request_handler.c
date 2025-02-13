@@ -14,14 +14,12 @@ void handle_client(int new_socket) {
     close(new_socket);
     return;
   }
-  printf("please\n");
-  char* html_content = serve_html("../../html/index.html");
+  char* html_content = serve_html("../html/index.html");
   if (html_content) {
     const char* keys[] = {"user", "is_logged_in"};
     const char* values[] = {"Dexter", "1"};
     const char* loop_key = "item";
     const char* loop_values[] = {"Item 1", "Item 2", "Item 3", "Item 4"};
-
     char* processed = process_template(
         html_content, 
         keys, values, 2,
@@ -42,5 +40,5 @@ void handle_client(int new_socket) {
     write(new_socket, error, strlen(error));
   }
 
-close(new_socket);
+  close(new_socket);
 }
