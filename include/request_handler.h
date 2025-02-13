@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "html_serve.h"
-#include "template.h"
+#include "template_utils.h"
 
 #define BUFFER_SIZE 1024
 
