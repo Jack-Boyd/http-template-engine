@@ -1,3 +1,0 @@
-/Users/jackboyd/Development/C/html-template-engine/build/CMakeFiles/server.dir
-/Users/jackboyd/Development/C/html-template-engine/build/CMakeFiles/edit_cache.dir
-/Users/jackboyd/Development/C/html-template-engine/build/CMakeFiles/rebuild_cache.dir
