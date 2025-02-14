@@ -4,6 +4,7 @@
 #define BUFFER_SIZE 1024
 
 int main() {
+  //Create socket on port 8080 
   int server_fd, new_socket;
   struct sockaddr_in address;
   int addrlen = sizeof(address);
@@ -16,8 +17,9 @@ int main() {
   printf("Server listening on port: %d\n", PORT);
 
   while(1) {
+    //Accept incoming connections to socket on port
     new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&address);
-    
+
     if (new_socket < 0) {
       perror("Connection not accepted: ");
       continue;

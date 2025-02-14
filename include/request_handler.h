@@ -11,4 +11,4 @@
 
 void handle_client(int new_socket);
 
-#endif // REQUEST_HANDLER_H
+#endif
